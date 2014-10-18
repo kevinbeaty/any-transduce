@@ -1,17 +1,59 @@
-exportLibs(['protocol', 'array', 'push', 'math']);
+var protocol = require('transduce-protocol');
 
-function exportLibs(libs){
-  var i=0, len = libs.length;
-  for(; i < len; i++){
-    exportLib(libs[i]);
-  }
-}
+var impl = load();
 
-function exportLib(lib){
-  var library = require('transduce-'+lib), key;
-  for(key in library){
-    if(library.hasOwnProperty(key)){
-      module.exports[key] = library[key];
+module.exports = {
+  transduce: impl.transduce,
+  reduce: impl.reduce,
+  take: impl.take,
+  drop: impl.drop,
+  protocols: protocol.protocols,
+  isIterator: protocol.isIterator,
+  iterator: protocol.iterator,
+  isTransformer: protocol.isTransformer,
+  transformer: protocol.transformer,
+  isReduced: protocol.isReduced,
+  reduced: protocol.reduced,
+  unreduced: protocol.unreduced,
+  compose: protocol.compose
+};
+
+function load(){
+  var impl;
+  try {
+    impl = loadTransducersDashJS();
+  } catch (e) {
+    try {
+      impl = loadTransducersDotJS();
+    } catch(e2){
+      throw new Error('Must npm install either transducers.js or transducers-js, your choice');
     }
   }
+  return impl;
+}
+
+function loadTransducersDashJS(){
+  return require('transducers-js');
+}
+
+function loadTransducersDotJS(){
+  //adapt methods to match transducers-js API
+  var impl = require('transducers.js');
+  return {
+    transduce: function(xf, f, init, coll){
+      f = protocol.transformer(f);
+      return impl.transduce(coll, xf, f, init);
+    },
+    reduce: function(f, init, coll){
+      f = protocol.transformer(f);
+      return impl.reduce(coll, f, init);
+    },
+    take: function(n){
+      return impl.take(null, n);
+    },
+    drop: function(n){
+      return impl.drop(null, n);
+    }
+  }
+  return impl;
 }
