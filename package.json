@@ -1,6 +1,6 @@
 {
   "name": "transduce",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "General Utilities for Working with JavaScript Transducers",
   "main": "transduce.js",
   "scripts": {

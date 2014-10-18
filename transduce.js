@@ -3,6 +3,7 @@ var protocol = require('transduce-protocol');
 var impl = load();
 
 module.exports = {
+  into: impl.into,
   transduce: impl.transduce,
   reduce: impl.reduce,
   take: impl.take,
@@ -26,7 +27,7 @@ function load(){
     try {
       impl = loadTransducersDotJS();
     } catch(e2){
-      throw new Error('Must npm install either transducers.js or transducers-js, your choice');
+      throw new Error('Must npm install either transducers-js or transducers.js, your choice');
     }
   }
   return impl;
@@ -40,6 +41,7 @@ function loadTransducersDotJS(){
   //adapt methods to match transducers-js API
   var impl = require('transducers.js');
   return {
+    into: impl.into,
     transduce: function(xf, f, init, coll){
       f = protocol.transformer(f);
       return impl.transduce(coll, xf, f, init);
