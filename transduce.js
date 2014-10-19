@@ -6,8 +6,13 @@ module.exports = {
   into: impl.into,
   transduce: impl.transduce,
   reduce: impl.reduce,
+  map: impl.map,
+  filter: impl.filter,
+  remove: impl.remove,
   take: impl.take,
+  takeWhile: impl.takeWhile,
   drop: impl.drop,
+  dropWhile: impl.dropWhile,
   protocols: protocol.protocols,
   isIterator: protocol.isIterator,
   iterator: protocol.iterator,
@@ -50,11 +55,26 @@ function loadTransducersDotJS(){
       f = protocol.transformer(f);
       return impl.reduce(coll, f, init);
     },
+    map: function(f){
+      return impl.map(null, f);
+    },
+    filter: function(p){
+      return impl.filter(null, f);
+    },
+    remove: function(p){
+      return impl.remove(null, f);
+    },
     take: function(n){
       return impl.take(null, n);
     },
+    takeWhile: function(pred){
+      return impl.takeWhile(null, pred);
+    },
     drop: function(n){
       return impl.drop(null, n);
+    },
+    dropWhile: function(pred){
+      return impl.dropWhile(null, pred);
     }
   }
   return impl;

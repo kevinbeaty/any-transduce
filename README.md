@@ -18,8 +18,13 @@ Currently supports a common interface for the following methods:
 into: function(empty, xf, coll);
 transduce: function(xf, f, init, coll);
 reduce: function(f, init, coll);
+map: function(f);
+filter: function(pred);
+remove: function(pred);
 take: function(n);
+takeWhile: function(pred);
 drop: function(n);
+dropWhile: function(pred);
 ```
 Also mixes in all methods in [transduce-protocol][3].
 
