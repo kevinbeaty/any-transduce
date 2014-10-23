@@ -22,5 +22,11 @@
   "homepage": "http://github.com/transduce/transduce",
   "dependencies": {
     "transduce-protocol": "0.0.3"
+  },
+  "devDependencies": {
+    "tape": "~3.0.0",
+    "uglify-js": "~2.3.6",
+    "transduce": "0.0.4",
+    "transducers-js": "~0.4.135"
   }
 }

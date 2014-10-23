@@ -1,4 +1,5 @@
 ## Transduce
+[![Build Status](https://secure.travis-ci.org/transduce/transduce.svg)](http://travis-ci.org/transduce/transduce)
 
 Let your transducers library support either [transducers-js][1] or [transducers.js][2]. The choice is yours.  You must `npm install` your preference before requiring this library.  When API differs, exported functions are adapted to match [transducers-js][1].
 
