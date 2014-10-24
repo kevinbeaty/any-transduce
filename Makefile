@@ -1,5 +1,5 @@
 PROJECT:=transduce
-VERSION:=0.0.1
+VERSION:=0.0.6
 
 JS_TARGET ?= build/$(PROJECT)-$(VERSION).js
 
