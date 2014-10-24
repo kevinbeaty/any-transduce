@@ -28,6 +28,7 @@
     "uglify-js": "~2.3.6",
     "transduce": "0.0.4",
     "transducers-js": "~0.4.135",
+    "transducers.js": "~0.2.3",
     "browserify": "~6.1.0"
   }
 }
