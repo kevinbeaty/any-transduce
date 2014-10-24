@@ -9,7 +9,7 @@ function load(){
   for(; i < len; i++){
     try {
       impl = loader[libs[i]]();
-      if(impl !== undef){
+      if(impl && impl.map){
         return impl;
       }
     } catch(e){}
@@ -19,9 +19,12 @@ function load(){
 
 var undef, loader = {
   'transducers-js': function(){
-    var impl;
-    if(typeof window !== 'undefined' && window.transducers && window.transducers.Wrap){
-      impl = window.transducers;
+    var impl = loadFromBrowser();
+    if(impl){
+      if(!impl.Wrap){
+        // if no Wrap exported, probably transducers.js
+        impl = undef;
+      }
     } else {
       impl = require('transducers-js');
     }
@@ -29,10 +32,8 @@ var undef, loader = {
   },
   'transducers.js': function(){
     //adapt methods to match transducers-js API
-    var impl;
-    if(typeof window !== 'undefined' && window.transducers){
-      impl = window.transducers;
-    } else {
+    var impl = loadFromBrowser();
+    if(!impl){
       impl = require('transducers.js');
     }
     return {
@@ -60,6 +61,12 @@ var undef, loader = {
 function nullFirst(impl, method){
   return function(f){
     return impl[method](f);
+  }
+}
+
+function loadFromBrowser(){
+  if(typeof window !== 'undefined'){
+    return window.transducers;
   }
 }
 
