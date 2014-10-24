@@ -39,12 +39,23 @@ function load(){
 }
 
 function loadTransducersDashJS(){
-  return require('transducers-js');
+  var impl;
+  if(typeof window !== 'undefined' && window.transducers && window.transducers.Wrap){
+    impl = window.transducers;
+  } else {
+    impl = require('transducers-js');
+  }
+  return impl;
 }
 
 function loadTransducersDotJS(){
   //adapt methods to match transducers-js API
-  var impl = require('transducers.js');
+  var impl;
+  if(typeof window !== 'undefined' && window.transducers){
+    impl = window.transducers;
+  } else {
+    impl = require('transducers.js');
+  }
   return {
     into: impl.into,
     transduce: function(xf, f, init, coll){
