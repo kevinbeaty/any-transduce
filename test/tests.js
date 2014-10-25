@@ -101,3 +101,21 @@ test('mapcat', function(t) {
   t.deepEqual(res, [1,2,3,4,5,6,7,8,9]);
 });
 
+test('partitionBy', function(t) {
+  t.plan(2);
+  var result = tr.into([], tr.partitionBy(isOdd), [0,1,1,3,4,6,8,7,7,8]);
+  t.deepEqual(result, [[0], [1,1,3], [4,6,8], [7,7], [8]]);
+  var arr = [1,1,1,2,2,3,3,3];
+  result = tr.into([], tr.compose(tr.partitionBy(identity), tr.take(2)), arr);
+  t.deepEqual(result, [[1,1,1],[2,2]]);
+});
+
+test('partitionAll', function(t) {
+  t.plan(3);
+  var result = tr.into([], tr.partitionAll(2), [0,1,2,3,4,5,6,7,8,9]);
+  t.deepEqual(result, [[0,1],[2,3],[4,5],[6,7],[8,9]]);
+  var result = tr.into([], tr.partitionAll(2), [0,1,2,3,4,5,6,7,8]);
+  t.deepEqual(result, [[0,1],[2,3],[4,5],[6,7],[8]]);
+  result = tr.into([], tr.compose(tr.partitionAll(2), tr.take(2)), [0,1,2,3,4,5,6,7,8,9]);
+  t.deepEqual(result, [[0,1],[2,3]]);
+});

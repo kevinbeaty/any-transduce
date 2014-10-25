@@ -26,6 +26,10 @@ take: function(n);
 takeWhile: function(pred);
 drop: function(n);
 dropWhile: function(pred);
+cat: transducer;
+mapcat: function(f);
+partitionAll: function(n);
+partitionBy: function(f);
 ```
 Also mixes in all methods in [transduce-protocol][3].
 
