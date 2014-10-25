@@ -53,6 +53,8 @@ var undef, loader = {
       takeWhile: nullFirst(impl, 'takeWhile'),
       drop: nullFirst(impl, 'drop'),
       dropWhile: nullFirst(impl, 'dropWhile'),
+      cat: impl.cat,
+      mapcat: impl.mapcat,
     }
     return impl;
   }
@@ -83,6 +85,8 @@ module.exports = {
   takeWhile: impl.takeWhile,
   drop: impl.drop,
   dropWhile: impl.dropWhile,
+  cat: impl.cat,
+  mapcat: impl.mapcat,
   protocols: protocol.protocols,
   isIterator: protocol.isIterator,
   iterator: protocol.iterator,

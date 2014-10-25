@@ -8,6 +8,7 @@ function not(p){
   }
 }
 var isEven = not(isOdd);
+function identity(v){return v;}
 
 test('map', function(t){
   t.plan(3);
@@ -86,3 +87,17 @@ test('dropWhile', function(t) {
   t.deepEqual(tr.into([], tr.dropWhile(isEven), [2, 2, 3]), [3]);
   t.deepEqual(tr.into([], tr.dropWhile(isOdd), [1, 3, 3]), []);
 });
+
+test('cat', function(t) {
+  t.plan(1);
+  var res = tr.into([], tr.cat, [[1,2,3],[4,5,6],[7,8,9]]);
+  t.deepEqual(res, [1,2,3,4,5,6,7,8,9]);
+});
+
+
+test('mapcat', function(t) {
+  t.plan(1);
+  var res = tr.into([], tr.mapcat(function(arr){return arr.reverse();}), [[3,2,1],[6,5,4],[9,8,7]]);
+  t.deepEqual(res, [1,2,3,4,5,6,7,8,9]);
+});
+
