@@ -1,7 +1,6 @@
 PROJECT:=transduce
-VERSION:=0.0.6
 
-JS_TARGET ?= build/$(PROJECT)-$(VERSION).js
+JS_TARGET ?= build/$(PROJECT).js
 
 .PHONY: all clean js test serve
 all: test js
