@@ -1,6 +1,6 @@
 {
   "name": "transduce",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "General Utilities for Working with JavaScript Transducers",
   "main": "transduce.js",
   "scripts": {
@@ -21,13 +21,11 @@
   },
   "homepage": "http://github.com/transduce/transduce",
   "dependencies": {
-    "transduce-protocol": "0.0.3"
+    "transduce-protocol": "0.0.4"
   },
   "devDependencies": {
     "tape": "~3.0.0",
-    "uglify-js": "~2.3.6",
     "transducers-js": "~0.4.135",
-    "transducers.js": "~0.2.3",
-    "browserify": "~6.1.0"
+    "transducers.js": "~0.2.3"
   }
 }
