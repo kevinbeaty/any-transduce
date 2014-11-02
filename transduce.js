@@ -1,4 +1,5 @@
-var protocol = require('transduce-protocol');
+"use strict";
+var protocol = require('transduce-protocol'),
     implFns = [
       'into', 'transduce', 'reduce', 'map', 'filter', 'remove', 'take', 'takeWhile',
       'drop', 'dropWhile', 'cat', 'mapcat', 'partitionAll', 'partitionBy'],
@@ -28,7 +29,7 @@ function load(){
   if(typeof process !== 'undefined' && process.env && process.env.TRANSDUCE_IMPL){
     libs = [process.env.TRANSDUCE_IMPL];
   }
-  var i = 0; len = libs.length;
+  var i = 0, len = libs.length;
   for(; i < len; i++){
     try {
       if(loader[libs[i]]()){
@@ -73,10 +74,11 @@ var undef, loader = {
     });
     return true;
   }
-}
+};
 
 function loadFromBrowser(){
   if(typeof window !== 'undefined'){
+    /* global window */
     return window.transducers;
   }
 }

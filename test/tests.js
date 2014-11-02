@@ -1,11 +1,12 @@
+"use strict";
 var tr = require('../'),
     test = require('tape');
 
-function isOdd(x){return x % 2 === 1};
+function isOdd(x){return x % 2 === 1;}
 function not(p){
   return function(v){
     return !p(v);
-  }
+  };
 }
 var isEven = not(isOdd);
 function identity(v){return v;}
@@ -21,7 +22,7 @@ test('map', function(t){
 
   doubled = tr.compose(
     tr.map(function(num){ return num * 2; }),
-    tr.map(function(num){ return num * 3; }))
+    tr.map(function(num){ return num * 3; }));
   t.deepEqual([6,12,18], tr.into([], doubled, [1,2,3]), 'can double and triple in chain value');
 });
 
@@ -114,7 +115,7 @@ test('partitionAll', function(t) {
   t.plan(3);
   var result = tr.into([], tr.partitionAll(2), [0,1,2,3,4,5,6,7,8,9]);
   t.deepEqual(result, [[0,1],[2,3],[4,5],[6,7],[8,9]]);
-  var result = tr.into([], tr.partitionAll(2), [0,1,2,3,4,5,6,7,8]);
+  result = tr.into([], tr.partitionAll(2), [0,1,2,3,4,5,6,7,8]);
   t.deepEqual(result, [[0,1],[2,3],[4,5],[6,7],[8]]);
   result = tr.into([], tr.compose(tr.partitionAll(2), tr.take(2)), [0,1,2,3,4,5,6,7,8,9]);
   t.deepEqual(result, [[0,1],[2,3]]);
