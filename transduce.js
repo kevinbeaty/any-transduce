@@ -1,11 +1,17 @@
 "use strict";
 var protocol = require('transduce-protocol'),
+    transformer = protocol.transformer,
+    transduceToArray = protocol.transduceToArray,
     implFns = [
-      'into', 'transduce', 'reduce', 'map', 'filter', 'remove', 'take', 'takeWhile',
+      'into', 'transduce', 'reduce', 'toArray',
+      'map', 'filter', 'remove', 'take', 'takeWhile',
       'drop', 'dropWhile', 'cat', 'mapcat', 'partitionAll', 'partitionBy'],
     protocolFns = [
-      'protocols', 'isIterator', 'iterator', 'isTransformer', 'transformer',
-      'isReduced', 'reduced', 'unreduced', 'compose'];
+      'protocols', 'compose',
+      'isIterable', 'isIterator', 'iterable', 'iterator',
+      'isTransformer', 'transformer',
+      'isReduced', 'reduced', 'unreduced', 'deref',
+      'isFunction', 'isArray', 'arrayPush', 'identity'];
 
 function exportImpl(impl, overrides){
   var i = 0, len = implFns.length, fn;
@@ -13,6 +19,7 @@ function exportImpl(impl, overrides){
     fn = implFns[i];
     exports[fn] = ((fn in overrides) ? overrides : impl)[fn];
   }
+  exports.toArray = transduceToArray(exports);
 }
 
 function exportProtocol(){
@@ -63,11 +70,11 @@ var undef, loader = {
     }
     exportImpl(impl, {
       transduce: function(xf, f, init, coll){
-        f = protocol.transformer(f);
+        f = transformer(f);
         return impl.transduce(coll, xf, f, init);
       },
       reduce: function(f, init, coll){
-        f = protocol.transformer(f);
+        f = transformer(f);
         return impl.reduce(coll, f, init);
       },
       partitionAll: impl.partition

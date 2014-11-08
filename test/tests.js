@@ -18,7 +18,7 @@ test('map', function(t){
   t.deepEqual([2,4,6], tr.into([], doubled, [1,2,3]), 'can double');
 
   var tripled = tr.map(function(num){ return num * 3; });
-  t.deepEqual([3,6,9], tr.into([], tripled, [1,2,3]), 'can triple');
+  t.deepEqual([3,6,9], tr.toArray(tripled, [1,2,3]), 'can triple');
 
   doubled = tr.compose(
     tr.map(function(num){ return num * 2; }),
@@ -41,7 +41,7 @@ test('filter', function(t) {
 
   var evenArray = [1, 2, 3, 4, 5, 6];
 
-  t.deepEqual(tr.into([], tr.filter(isEven), evenArray), [2, 4, 6]);
+  t.deepEqual(tr.toArray(tr.filter(isEven), evenArray), [2, 4, 6]);
 });
 
 test('remove', function(t) {
@@ -55,9 +55,9 @@ test('take', function(t) {
   t.plan(5);
 
   t.deepEqual(tr.into([], tr.take(0), [1, 2, 3]), [], 'can pass an index to first');
-  t.deepEqual(tr.into([], tr.take(1), [1, 2, 3]), [1], 'can pull out the first element of an array');
+  t.deepEqual(tr.toArray(tr.take(1), [1, 2, 3]), [1], 'can pull out the first element of an array');
   t.deepEqual(tr.into([], tr.take(2), [1, 2, 3]), [1, 2], 'can pass an index to first');
-  t.deepEqual(tr.into([], tr.take(3), [1, 2, 3]), [1, 2, 3], 'can pass an index to first');
+  t.deepEqual(tr.toArray(tr.take(3), [1, 2, 3]), [1, 2, 3], 'can pass an index to first');
   t.strictEqual(tr.into([], tr.take(-1), [1, 2, 3]).length, 0);
 });
 
