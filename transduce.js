@@ -1,5 +1,8 @@
 "use strict";
 var protocol = require('transduce-protocol'),
+    lib = require('./load'),
+    loadLib = lib.load,
+    libs = lib.libs,
     transformer = protocol.transformer,
     transduceToArray = protocol.transduceToArray,
     implFns = [
@@ -32,10 +35,6 @@ function exportProtocol(){
 
 function load(){
   exportProtocol();
-  var libs = ['transducers-js', 'transducers.js'], impl;
-  if(typeof process !== 'undefined' && process.env && process.env.TRANSDUCE_IMPL){
-    libs = [process.env.TRANSDUCE_IMPL];
-  }
   var i = 0, len = libs.length;
   for(; i < len; i++){
     try {
@@ -49,14 +48,9 @@ function load(){
 
 var undef, loader = {
   'transducers-js': function(){
-    var impl = loadFromBrowser(),
-        loaded = true;
-    if(impl){
-      // if no Wrap exported, probably transducers.js
-      loaded = !!impl.Wrap;
-    } else {
-      impl = require('transducers-js');
-    }
+    var impl = loadLib('transducers-js'),
+        // if no Wrap exported, probably transducers.js
+        loaded =  !!impl.Wrap;
     if(loaded){
       exportImpl(impl, {});
     }
@@ -64,10 +58,8 @@ var undef, loader = {
   },
   'transducers.js': function(){
     //adapt methods to match transducers-js API
-    var impl = loadFromBrowser();
-    if(!impl){
-      impl = require('transducers.js');
-    }
+    var impl = loadLib('transducers.js');
+
     exportImpl(impl, {
       transduce: function(xf, f, init, coll){
         f = transformer(f);
@@ -82,12 +74,5 @@ var undef, loader = {
     return true;
   }
 };
-
-function loadFromBrowser(){
-  if(typeof window !== 'undefined'){
-    /* global window */
-    return window.transducers;
-  }
-}
 
 load();

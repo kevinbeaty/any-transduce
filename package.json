@@ -1,8 +1,11 @@
 {
   "name": "transduce",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "General Utilities for Working with JavaScript Transducers",
   "main": "transduce.js",
+  "browser": {
+    "./load.js": "./load-browser.js"
+  },
   "scripts": {
     "test": "make test"
   },
