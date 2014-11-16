@@ -1,7 +1,7 @@
 {
   "name": "transduce",
-  "version": "0.0.11",
-  "description": "General Utilities for Working with JavaScript Transducers",
+  "version": "0.0.12",
+  "description": "transducers-js or transducers.js: Users choice",
   "main": "transduce.js",
   "browser": {
     "./load.js": "./load-browser.js"
@@ -24,7 +24,7 @@
   },
   "homepage": "http://github.com/transduce/transduce",
   "dependencies": {
-    "transduce-protocol": "0.0.6"
+    "transduce-protocol": "0.0.7"
   },
   "devDependencies": {
     "tape": "~3.0.0",
