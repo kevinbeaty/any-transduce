@@ -1,8 +1,8 @@
 {
-  "name": "transduce",
+  "name": "any-transduce",
   "version": "0.0.12",
   "description": "transducers-js or transducers.js: Users choice",
-  "main": "transduce.js",
+  "main": "any-transduce.js",
   "browser": {
     "./load.js": "./load-browser.js"
   },
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/transduce/transduce"
+    "url": "https://github.com/transduce/any-transduce"
   },
   "keywords": [
     "transducer",
@@ -20,9 +20,9 @@
   "author": "Kevin Beaty",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/transduce/transduce/issues"
+    "url": "https://github.com/transduce/any-transduce/issues"
   },
-  "homepage": "http://github.com/transduce/transduce",
+  "homepage": "http://github.com/transduce/any-transduce",
   "dependencies": {
     "transduce-protocol": "0.0.7"
   },

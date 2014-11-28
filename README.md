@@ -1,5 +1,5 @@
-## Transduce
-[![Build Status](https://secure.travis-ci.org/transduce/transduce.svg)](http://travis-ci.org/transduce/transduce)
+## Any Transduce
+[![Build Status](https://secure.travis-ci.org/transduce/any-transduce.svg)](http://travis-ci.org/transduce/any-transduce)
 
 Let your transducers library support either [transducers-js][1] or [transducers.js][2] and leave the choice to the end user. The end user can `npm install`, or install a browser version in a `<script>` tag their preference before using this library and the  installed library will be automatically detected.  When API differs, exported functions are adapted to match [transducers-js][1].
 
