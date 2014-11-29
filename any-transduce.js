@@ -5,7 +5,7 @@ var lib = require('./load'),
     transformer = require('transformer-protocol').transformer,
     transduceToArray = require('transduce-impl-toarray'),
     implFns = [
-      'into', 'transduce', 'reduce', 'toArray',
+      'into', 'transduce', 'reduce', 'toArray', 'compose',
       'map', 'filter', 'remove', 'take', 'takeWhile',
       'drop', 'dropWhile', 'cat', 'mapcat', 'partitionAll', 'partitionBy'];
 
@@ -41,7 +41,7 @@ var undef, loader = {
         // if no Wrap exported, probably transducers.js
         loaded =  !!impl.Wrap;
     if(loaded){
-      exportImpl(impl, {});
+      exportImpl(impl, {compose:impl.comp});
     }
     return loaded;
   },

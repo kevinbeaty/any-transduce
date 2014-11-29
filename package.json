@@ -1,6 +1,6 @@
 {
   "name": "any-transduce",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "transduce, transducers-js or transducers.js: Users choice",
   "main": "any-transduce.js",
   "browser": {
