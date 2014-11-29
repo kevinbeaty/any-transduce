@@ -1,8 +1,11 @@
 "use strict";
-/*global transducers */
-var libs = ['transducers-js', 'transducers.js'];
+/*global transduce, transducers */
+var libs = ['transduce','transducers-js', 'transducers.js'];
 
 function load(lib){
+  if(lib === 'transduce'){
+    return transduce;
+  }
   return transducers;
 }
 

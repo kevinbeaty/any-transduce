@@ -3,5 +3,6 @@ node_js:
   - "0.10"
   - "0.11"
 env:
+  - TRANSDUCE_IMPL=transduce
   - TRANSDUCE_IMPL=transducers-js
   - TRANSDUCE_IMPL=transducers.js

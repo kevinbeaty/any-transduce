@@ -1,20 +1,13 @@
 "use strict";
-var protocol = require('transduce-protocol'),
-    lib = require('./load'),
+var lib = require('./load'),
     loadLib = lib.load,
     libs = lib.libs,
-    transformer = protocol.transformer,
-    transduceToArray = protocol.transduceToArray,
+    transformer = require('transformer-protocol').transformer,
+    transduceToArray = require('transduce-impl-toarray'),
     implFns = [
       'into', 'transduce', 'reduce', 'toArray',
       'map', 'filter', 'remove', 'take', 'takeWhile',
-      'drop', 'dropWhile', 'cat', 'mapcat', 'partitionAll', 'partitionBy'],
-    protocolFns = [
-      'protocols', 'compose',
-      'isIterable', 'isIterator', 'iterable', 'iterator',
-      'isTransformer', 'transformer',
-      'isReduced', 'reduced', 'unreduced', 'deref',
-      'isFunction', 'isArray', 'arrayPush', 'identity'];
+      'drop', 'dropWhile', 'cat', 'mapcat', 'partitionAll', 'partitionBy'];
 
 function exportImpl(impl, overrides){
   var i = 0, len = implFns.length, fn;
@@ -25,16 +18,7 @@ function exportImpl(impl, overrides){
   exports.toArray = transduceToArray(exports);
 }
 
-function exportProtocol(){
-  var i = 0, len = protocolFns.length, fn;
-  for(; i < len; i++){
-    fn = protocolFns[i];
-    exports[fn] = protocol[fn];
-  }
-}
-
 function load(){
-  exportProtocol();
   var i = 0, len = libs.length;
   for(; i < len; i++){
     try {
@@ -47,6 +31,11 @@ function load(){
 }
 
 var undef, loader = {
+  'transduce': function(){
+   var impl = loadLib('transduce');
+   exportImpl(impl, {});
+   return true;
+  },
   'transducers-js': function(){
     var impl = loadLib('transducers-js'),
         // if no Wrap exported, probably transducers.js
