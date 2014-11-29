@@ -24,14 +24,13 @@
   },
   "homepage": "http://github.com/transduce/any-transduce",
   "dependencies": {
-    "transformer-protocol": "0.0.1",
-    "transduce-impl-toarray": "0.0.1"
+    "transformer-protocol": "~0.1.0",
+    "transduce-impl-toarray": "~0.1.0"
   },
   "devDependencies": {
     "tape": "~3.0.0",
     "transducers-js": "~0.4.135",
     "transducers.js": "~0.2.3",
-    "transduce": "~0.1.0",
-    "transduce-util": "0.0.3"
+    "transduce": "~0.2.0"
   }
 }
