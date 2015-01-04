@@ -2,8 +2,8 @@
 var lib = require('./load'),
     loadLib = lib.load,
     libs = lib.libs,
+    arrayPush = require('transduce-util').arrayPush,
     transformer = require('transformer-protocol').transformer,
-    transduceToArray = require('transduce-impl-toarray'),
     implFns = [
       'into', 'transduce', 'reduce', 'toArray', 'compose',
       'map', 'filter', 'remove', 'take', 'takeWhile',
@@ -63,5 +63,15 @@ var undef, loader = {
     return true;
   }
 };
+
+function transduceToArray(impl){
+  return function(xf, coll){
+    var init = [];
+    if(coll === undef){
+      return impl.reduce(arrayPush, init, xf);
+    }
+    return impl.transduce(xf, arrayPush, init, coll);
+  };
+}
 
 load();
