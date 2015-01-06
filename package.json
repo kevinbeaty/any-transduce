@@ -1,6 +1,6 @@
 {
   "name": "any-transduce",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "transduce, transducers-js or transducers.js: Users choice",
   "main": "any-transduce.js",
   "browser": {
@@ -24,13 +24,11 @@
   },
   "homepage": "http://github.com/transduce/any-transduce",
   "dependencies": {
-    "transformer-protocol": "~0.2.0",
-    "transduce-util": "~0.2.0"
+    "transduce": "~0.4.0"
   },
   "devDependencies": {
     "tape": "~3.0.0",
     "transducers-js": "~0.4.135",
-    "transducers.js": "~0.2.3",
-    "transduce": "~0.3.1"
+    "transducers.js": "~0.2.3"
   }
 }
