@@ -2,8 +2,6 @@
 var lib = require('./load'),
     loadLib = lib.load,
     libs = lib.libs,
-    arrayPush = require('transduce/util/arrayPush'),
-    transformer = require('transduce/transformer/transformer'),
     implFns = [
       'into', 'transduce', 'reduce', 'toArray', 'compose',
       'map', 'filter', 'remove', 'take', 'takeWhile',
@@ -51,11 +49,11 @@ var loader = {
 
     exportImpl(impl, {
       transduce: function(xf, f, init, coll){
-        f = transformer(f)
+        f = completing(f)
         return impl.transduce(coll, xf, f, init)
       },
       reduce: function(f, init, coll){
-        f = transformer(f)
+        f = completing(f)
         return impl.reduce(coll, f, init)
       },
       partitionAll: impl.partition
@@ -72,6 +70,24 @@ function transduceToArray(impl){
     }
     return impl.transduce(xf, arrayPush, init, coll)
   }
+}
+
+function arrayPush(result, input){
+  result.push(input)
+  return result
+}
+
+function completing(rf){
+  return new Completing(rf)
+}
+function Completing(rf, result){
+  this.step = rf
+}
+Completing.prototype.init = function(){
+  return this.step()
+}
+Completing.prototype.result = function(result){
+  return result
 }
 
 load()
