@@ -27,6 +27,6 @@
     "tape": "~3.0.0",
     "transducers-js": "~0.4.135",
     "transducers.js": "~0.2.3",
-    "transduce": "~0.5.1"
+    "transduce": "~0.6.0"
   }
 }
