@@ -24,9 +24,9 @@
   },
   "homepage": "http://github.com/transduce/any-transduce",
   "devDependencies": {
-    "tape": "~3.0.0",
+    "tape": "~3.5.0",
     "transducers-js": "~0.4.135",
     "transducers.js": "~0.2.3",
-    "transduce": "~0.6.0"
+    "transduce": "~0.7.0"
   }
 }
